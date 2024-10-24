@@ -29,3 +29,17 @@ stages:
       serviceConnectionName: CICD_DEV
       overrideParameters: >
         -ADLSg2_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
+
+- stage: PROD
+  variables:
+  - group: PROD
+  jobs:
+  - template: adf-deploy-job.yml
+    parameters:
+      environmentName: PROD
+      subscriptionId: 70d3ca1d-a411-4231-8ec2-eae8259a6010
+      resourceGroupName: deploymentENV
+      dataFactoryName: deploymentadf111
+      serviceConnectionName: CICD_PROD
+      overrideParameters: >
+        -ADLSg2_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
