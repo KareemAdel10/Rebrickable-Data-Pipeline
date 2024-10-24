@@ -28,8 +28,8 @@ stages:
       dataFactoryName: azurecourseadf213123
       serviceConnectionName: CICD_DEV
       overrideParameters: >
-        -ADLSg2_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
-
+        -ADLSg2DEV_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
+        
 - stage: PROD
   variables:
   - group: PROD
@@ -42,4 +42,4 @@ stages:
       dataFactoryName: deploymentadf111
       serviceConnectionName: CICD_PROD
       overrideParameters: >
-        -ADLSg2_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
+        -ADLSg2DEV_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
