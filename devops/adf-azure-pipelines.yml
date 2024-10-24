@@ -15,3 +15,17 @@ stages:
       dataFactoryName: azurecourseadf213123
       repoRootFolder: /data-factory/
       packageJsonFolder: /devops/
+
+- stage: DEV
+  variables:
+  - group: DEV
+  jobs:
+  - template: adf-deploy-job.yml
+    parameters:
+      environmentName: DEV
+      subscriptionId: 70d3ca1d-a411-4231-8ec2-eae8259a6010
+      resourceGroupName: AzureCourse
+      dataFactoryName: azurecourseadf213123
+      serviceConnectionName: CICD_DEV
+      overrideParameters: >
+        -ADLSg2_LS_properties_typeProperties_url $(ADLSg2_LS_properties_typeProperties_url)
