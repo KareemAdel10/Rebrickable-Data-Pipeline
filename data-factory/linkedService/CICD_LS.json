@@ -1,0 +1,11 @@
+{
+	"name": "CICD_LS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://atomicatraining.dfs.core.windows.net/"
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "well_production_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "well_task_DB_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "well_production_data"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

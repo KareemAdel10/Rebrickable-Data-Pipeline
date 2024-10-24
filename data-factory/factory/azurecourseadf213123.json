@@ -1,0 +1,9 @@
+{
+	"name": "azurecourseadf213123",
+	"location": "israelcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8aa7eb11-9ce4-4060-8270-27a2cda358f6",
+		"tenantId": "7f3a6ceb-c511-477b-a21a-ea83ceae53d8"
+	}
+}
