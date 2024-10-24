@@ -1,0 +1,10 @@
+{
+	"name": "ADLSg2DEV_LS",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://atomicatraining.dfs.core.windows.net/"
+		}
+	}
+}
