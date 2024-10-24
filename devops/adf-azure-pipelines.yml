@@ -8,10 +8,10 @@ stages:
 
 - stage: BUILD
   jobs:
-  - template: <path_to_adf-build-job.yml_file>
+  - template: adf-build-job.yml
     parameters:
-      subscriptionId: <subscription_id>
-      resourceGroupName: <resource_group_name>
-      dataFactoryName: <data_factory_name>
-      repoRootFolder: <absolute_path_to_datafactory_folder, ex. /data-factory/>
-      packageJsonFolder: <absolute_path_to_package_json, ex. /devops/)
+      subscriptionId: 70d3ca1d-a411-4231-8ec2-eae8259a6010
+      resourceGroupName: AzureCourse
+      dataFactoryName: azurecourseadf213123
+      repoRootFolder: /data-factory/
+      packageJsonFolder: /devops/
