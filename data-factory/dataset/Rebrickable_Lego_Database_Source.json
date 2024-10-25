@@ -1,5 +1,5 @@
 {
-	"name": "Rebrickable_Database_Source",
+	"name": "Rebrickable_Lego_Database_Source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Rebricakble_Database_LS",
@@ -22,7 +22,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "\"https://rebrickable.com/downloads/@{dataset().DatasetName_DS}.csv.gz\"",
+					"value": "\"https://rebrickable.com/media//downloads/@{dataset().DatasetName_DS}.csv.gz\"",
 					"type": "Expression"
 				}
 			}

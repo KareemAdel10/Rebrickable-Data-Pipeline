@@ -35,7 +35,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Rebrickable_Database_Source",
+						"referenceName": "Rebrickable_Lego_Database_Source",
 						"type": "DatasetReference",
 						"parameters": {
 							"DatasetName_DS": {
