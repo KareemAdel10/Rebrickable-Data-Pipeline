@@ -1,0 +1,30 @@
+{
+	"name": "Reprickable_Lego_Dataset_Names_List_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLSg2DEV_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "rebrickable_lego_datasets.json",
+				"folderPath": "Rebrickable/Lego",
+				"fileSystem": "raw-data"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"dataset_names": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}

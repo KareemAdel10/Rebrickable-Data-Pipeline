@@ -1,0 +1,34 @@
+{
+	"name": "Rebrickable_Lego_Database_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Rebricakble_Database_LS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Rebrickable_database_LS": {
+					"value": "@dataset().DatasetName_DS",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"DatasetName_DS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@{dataset().DatasetName_DS}.csv.gz",
+					"type": "Expression"
+				}
+			},
+			"compression": {
+				"type": "gzip"
+			}
+		}
+	}
+}
