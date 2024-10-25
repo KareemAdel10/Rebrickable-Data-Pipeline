@@ -1,0 +1,26 @@
+{
+	"name": "Rebricakble_Database_LS",
+	"properties": {
+		"parameters": {
+			"Rebrickable_database_LS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://rebrickable.com/downloads/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Basic",
+			"userName": "AtomicaOL",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "ADLS-Access-key"
+			}
+		}
+	}
+}
