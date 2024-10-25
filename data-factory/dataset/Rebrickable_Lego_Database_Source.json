@@ -25,6 +25,9 @@
 					"value": "@{dataset().DatasetName_DS}.csv.gz",
 					"type": "Expression"
 				}
+			},
+			"compression": {
+				"type": "gzip"
 			}
 		}
 	}

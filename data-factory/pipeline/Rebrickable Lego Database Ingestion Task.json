@@ -19,7 +19,8 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "HttpReadSettings",
-							"requestMethod": "GET"
+							"requestMethod": "GET",
+							"additionalHeaders": "User-Agent: Chrome/85.0.4183.121 Safari/537.36"
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
