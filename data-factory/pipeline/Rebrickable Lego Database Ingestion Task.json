@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Rebrickable Lego Database",
+				"name": "copy - Rebrickable Lego dataset",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -57,6 +57,38 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "LKP - dataset name",
+				"description": "Select the dataset names",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Reprickable_Lego_Dataset_Names_List_json",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
 			}
 		],
 		"parameters": {
