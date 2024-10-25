@@ -1,0 +1,31 @@
+{
+	"name": "Rebricakble_Database_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Rebricakble_Database_LS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Rebrickable_database_LS": {
+					"value": "@dataset().DatasetName_DS",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"DatasetName_DS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "\"https://rebrickable.com/downloads/@{dataset().DatasetName_DS}.csv.gz\"",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
