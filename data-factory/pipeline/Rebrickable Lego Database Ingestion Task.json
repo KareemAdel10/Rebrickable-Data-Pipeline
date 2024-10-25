@@ -5,6 +5,8 @@
 			{
 				"name": "copy - Rebrickable Lego dataset",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -91,7 +93,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach - Loop over dataset names",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -104,7 +106,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LKP - dataset name').output.value",
+						"value": "@activity('LKP - dataset name').output.dataset_names",
 						"type": "Expression"
 					},
 					"isSequential": true,
