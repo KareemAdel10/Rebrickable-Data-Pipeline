@@ -1,5 +1,5 @@
 {
-	"name": "Rebricakble_Database_Source",
+	"name": "Rebrickable_Database_Source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Rebricakble_Database_LS",
