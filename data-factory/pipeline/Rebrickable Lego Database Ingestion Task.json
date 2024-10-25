@@ -64,6 +64,8 @@
 				"name": "LKP - dataset name",
 				"description": "Select the dataset names",
 				"type": "Lookup",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -95,6 +97,8 @@
 			{
 				"name": "ForEach - Loop over dataset names",
 				"type": "ForEach",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LKP - dataset name",
@@ -106,7 +110,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LKP - dataset name').output.dataset_names",
+						"value": "@activity('LKP - dataset name').output.value[0].dataset_names",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -173,7 +177,8 @@
 		],
 		"parameters": {
 			"DatasetName_pl": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "-"
 			}
 		},
 		"annotations": []
