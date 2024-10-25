@@ -9,7 +9,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://rebrickable.com/media/downloads/",
+			"url": "https://rebrickable.com/downloads/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Basic",
 			"userName": "AtomicaOL",
