@@ -22,7 +22,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "\"https://rebrickable.com/media//downloads/@{dataset().DatasetName_DS}.csv.gz\"",
+					"value": "https://rebrickable.com/media/downloads/@{dataset().DatasetName_DS}.csv.gz",
 					"type": "Expression"
 				}
 			}
