@@ -6,16 +6,7 @@
 		"typeProperties": {
 			"url": "https://rebrickable.com/",
 			"enableServerCertificateValidation": true,
-			"authenticationType": "Basic",
-			"userName": "AtomicaOL",
-			"password": {
-				"type": "AzureKeyVaultSecret",
-				"store": {
-					"referenceName": "AzureKeyVault1",
-					"type": "LinkedServiceReference"
-				},
-				"secretName": "ADLS-Access-key"
-			}
+			"authenticationType": "Anonymous"
 		}
 	}
 }
