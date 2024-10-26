@@ -74,7 +74,13 @@
 				"outputs": [
 					{
 						"referenceName": "Rebrickable_UserAPI_Database_Sink",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"endpoint_sinkDS": {
+								"value": "@pipeline().parameters.EndPoint_pl",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			},
