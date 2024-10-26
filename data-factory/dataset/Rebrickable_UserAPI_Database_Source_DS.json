@@ -1,0 +1,23 @@
+{
+	"name": "Rebrickable_UserAPI_Database_Source_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Rebrickable_UserAPI_Database_LS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"DatasetName_ds": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "api/v3/lego/@{dataset().DatasetName_ds}/",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}
