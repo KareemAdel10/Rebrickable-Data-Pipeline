@@ -1,0 +1,26 @@
+{
+	"name": "Rebrickable_UserAPI_Database_Source_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Rebrickable_UserAPI_Database_LS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"EndPoint": {
+				"type": "string"
+			},
+			"User_token": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "/api/v3/users/@{dataset().User_token}/@{dataset().EndPoint}/\n\n",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	}
+}

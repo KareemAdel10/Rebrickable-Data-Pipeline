@@ -1,0 +1,168 @@
+{
+	"name": "Rebrickable User Database Ingestion Task",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy - Get Api dataset",
+				"description": "Retrieve User dataset ",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "web - API Key",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set user_token_pl Variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "@concat('key ', activity('web - API Key').output.value)",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"AbsoluteUrl": "$.next"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "Rebrickable_UserAPI_Database_Source_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"EndPoint": {
+								"value": "@pipeline().parameters.EndPoint_pl",
+								"type": "Expression"
+							},
+							"User_token": {
+								"value": "@variables('user_token_pl')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Rebrickable_UserAPI_Database_Sink",
+						"type": "DatasetReference",
+						"parameters": {
+							"endpoint_sinkDS": {
+								"value": "@pipeline().parameters.EndPoint_pl",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "web - API Key",
+				"description": "get secret api key",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": true,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://asdasd123123.vault.azure.net/secrets/Rebrickable-API-key/8a0e3b6ac4f94136a51c4582e802f220?api-version=7.0",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "web - User Token",
+				"description": "get user token",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": true,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://asdasd123123.vault.azure.net/secrets/Rebrickable-User-token/69e391f93de8402ea2554db85d8850b3?api-version=7.0",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "Set user_token_pl Variable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "web - User Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": true,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "user_token_pl",
+					"value": {
+						"value": "@activity('web - User Token').output.value",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"EndPoint_pl": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"user_token_pl": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
