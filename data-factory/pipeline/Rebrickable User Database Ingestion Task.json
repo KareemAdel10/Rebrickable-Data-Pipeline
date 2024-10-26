@@ -121,7 +121,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"method": "GET",
-					"url": "https://asdasd123123.vault.azure.net/secrets/Rebrickable-User-token/69e391f93de8402ea2554db85d8850b3",
+					"url": "https://asdasd123123.vault.azure.net/secrets/Rebrickable-User-token/69e391f93de8402ea2554db85d8850b3?api-version=7.0",
 					"authentication": {
 						"type": "MSI",
 						"resource": "https://vault.azure.net"
