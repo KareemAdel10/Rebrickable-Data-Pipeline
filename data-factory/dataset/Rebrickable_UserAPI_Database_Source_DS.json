@@ -6,7 +6,10 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"DatasetName_ds": {
+			"EndPoint": {
+				"type": "string"
+			},
+			"User_token": {
 				"type": "string"
 			}
 		},
@@ -14,7 +17,7 @@
 		"type": "RestResource",
 		"typeProperties": {
 			"relativeUrl": {
-				"value": "api/v3/lego/@{dataset().DatasetName_ds}/",
+				"value": "/api/v3/users/dataset().User_token/dataset().EndPoint\n\n",
 				"type": "Expression"
 			}
 		},
