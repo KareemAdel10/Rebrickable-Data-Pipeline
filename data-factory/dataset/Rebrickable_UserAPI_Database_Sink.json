@@ -1,0 +1,31 @@
+{
+	"name": "Rebrickable_UserAPI_Database_Sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLSg2DEV_LS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"endpoint_sinkDS": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().endpoint_sinkDS,'.csv.gz')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(\n    'Rebrickable/',\n    'Users/',\n     dataset().endpoint_sinkDS, '/',\n    '/Year=', formatDateTime(utcNow(),'yyyy'),\n    '/Month=',formatDateTime(utcNow(),'MM'),\n    '/Day=',formatDateTime(utcNow(),'dd')\n)",
+					"type": "Expression"
+				},
+				"fileSystem": "raw-data"
+			}
+		},
+		"schema": {}
+	}
+}
