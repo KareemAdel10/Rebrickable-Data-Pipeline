@@ -17,7 +17,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
     - **Development and Production Environments**: 
         Organized into two main resource groups, one for development and one for production, the project allows isolated testing and reliable production deployment.
     - **Environment Synchronization via CI/CD**: 
-        Using a CI/CD pipeline, the project synchronizes the development and production environments. Committing a pull request to the main branch automatically applies changes to the PRODUCTION branch, ensuring continuous alignment across environments.
+        Using a CI/CD pipeline, the project synchronizes the development and production environments. Committing a pull request to the main branch automatically applies changes to the production branch, ensuring continuous alignment across environments.
         ![CI/CD pipeline](https://dev.azure.com/1900286/CI-CD/_git/Ingestion%20Task?path=/Images/CI-CD%20pipeline.png&version=GBsecondarybranch)
 2. **Dual Configurable Pipeline Architecture with Azure Data Factory (ADF)**:
     - **Separate ADF Instances**: 
@@ -55,6 +55,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
                 ![Life Cycle Management](https://dev.azure.com/1900286/CI-CD/_git/Ingestion%20Task?path=/Images/Life%20Cycle%20Management.png&version=GBsecondarybranch)
 
 # Technologies & Tools
+---
 - Azure Data Factory (ADF) for pipeline orchestration and scheduling
 - Microsoft Entra ID for access control
 - Azure Key Vault for secure storage of API keys and user tokens
@@ -63,18 +64,22 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
 - Azure DevOps for CI/CD pipeline management
 
 ## Contribution
+---
 Contributions to this project are welcome. If you have any ideas for improvement, feel free to fork the repository, make your changes, and submit a pull request. Please ensure your changes align with the overall project structure and objectives.
 
 ## Acknowledgements
+---
 I would like to thank the following:
 - Azure for offering powerful tools and services that enabled the seamless data engineering and analytics processes.
 - Tybul on Azure for providing great learning resources.
 
 # Contact
+---
 For any questions, feedback, or further information, feel free to reach out:
 - **Email:** kareema9001@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/kareem-adel-b76ab9201/
 
 ## License
+---
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
