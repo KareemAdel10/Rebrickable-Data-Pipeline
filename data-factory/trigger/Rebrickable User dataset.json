@@ -4,17 +4,7 @@
 		"description": "Ingest Daily user dataset endpoint",
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "Rebrickable User Database Ingestion Task",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"EndPoint_pl": "allparts"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
