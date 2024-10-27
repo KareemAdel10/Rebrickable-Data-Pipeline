@@ -174,7 +174,8 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "Error Alert",
+				"description": "If error Then send an email to admin",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
