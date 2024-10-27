@@ -4,17 +4,7 @@
 		"description": "Lego Database Daily Ingestion ",
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "Rebrickable Lego Database Ingestion Task",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"DatasetName_pl": "colors"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
