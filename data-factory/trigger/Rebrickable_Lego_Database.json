@@ -1,0 +1,36 @@
+{
+	"name": "Rebrickable_Lego_Database",
+	"properties": {
+		"description": "Lego Database Daily Ingestion ",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Rebrickable Lego Database Ingestion Task",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"DatasetName_pl": "colors"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-10-27T20:05:00",
+				"timeZone": "Egypt Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						9
+					]
+				}
+			}
+		}
+	}
+}
