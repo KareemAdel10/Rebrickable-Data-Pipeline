@@ -1,0 +1,610 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "azurecourseadf213123"
+		},
+		"AdventureWorks_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureWorks_LS'"
+		},
+		"rawADLSg2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'rawADLSg2'"
+		},
+		"well_production_data_LS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'well_production_data_LS'"
+		},
+		"well_task_DB_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'well_task_DB_LS'"
+		},
+		"ADLSg2DEV_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"AdventureWorks_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().serverName_ls}"
+		},
+		"AdventureWorks_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().dbName_ls}"
+		},
+		"AdventureWorks_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AtomicaOL"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://asdasd123123.vault.azure.net/"
+		},
+		"Rebrickable_UserAPI_Database_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rebrickable.com/"
+		},
+		"rawADLSg2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"well_production_data_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"well_task_DB_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azurecourse.database.windows.net"
+		},
+		"well_task_DB_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "training"
+		},
+		"well_task_DB_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AtomicaOL"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/globalparameters",
+			"apiVersion": "2018-06-01",
+			"properties": {},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dummy')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					},
+					{
+						"name": "Wait2",
+						"type": "Wait",
+						"dependsOn": [
+							{
+								"activity": "Wait1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLSg2DEV_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ADLSg2DEV_LS_properties_typeProperties_url')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AdventureWorks_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"serverName_ls": {
+						"type": "string"
+					},
+					"dbName_ls": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('AdventureWorks_LS_properties_typeProperties_server')]",
+					"database": "[parameters('AdventureWorks_LS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AdventureWorks_LS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AdventureWorks_LS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rebrickable_UserAPI_Database_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Rebrickable_UserAPI_Database_LS_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/rawADLSg2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('rawADLSg2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('rawADLSg2_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/well_production_data_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('well_production_data_LS_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('well_production_data_LS_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/well_task_DB_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('well_task_DB_LS_properties_typeProperties_server')]",
+					"database": "[parameters('well_task_DB_LS_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('well_task_DB_LS_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('well_task_DB_LS_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rebrickable User dataset')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Ingest Daily user dataset endpoint",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2024-10-27T20:07:00",
+						"timeZone": "Egypt Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								9
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rebrickable_Lego_Database')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Lego Database Daily Ingestion ",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2024-10-27T20:05:00",
+						"timeZone": "Egypt Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								9
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+			"apiVersion": "2018-06-01",
+			"properties": {},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLSg2_raw_container')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "rawADLSg2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"serverName_ADLSg2": {
+						"type": "string"
+					},
+					"dbName_ADLSg2": {
+						"type": "string"
+					},
+					"tableName_ADLSg2": {
+						"type": "string"
+					},
+					"schemaName_ADLSg2": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat( \n    dataset().schemaName_ADLSg2, '.',\n    dataset().tableName_ADLSg2,\n    '.csv')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat(\n    dataset().dbName_ADLSg2,'/',\n    dataset().schemaName_ADLSg2,'/',\n    dataset().tableName_ADLSg2,\n    '/Year=', formatDateTime(utcNow(),'yyyy'),\n    '/Month=',formatDateTime(utcNow(),'MM'),\n    '/Day=',formatDateTime(utcNow(),'dd')\n)",
+							"type": "Expression"
+						},
+						"fileSystem": "raw"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/rawADLSg2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GenericDB_Ds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AdventureWorks_LS",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"serverName_ls": {
+							"value": "@dataset().serverName_ds",
+							"type": "Expression"
+						},
+						"dbName_ls": {
+							"value": "@dataset().dbName_ds",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"serverName_ds": {
+						"type": "string"
+					},
+					"dbName_ds": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AdventureWorks_LS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "well_production_data_LS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "well_production_data.parquet",
+						"fileSystem": "well-productoin-data"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": [
+					{
+						"name": "Well Name",
+						"type": "UTF8"
+					},
+					{
+						"name": "Well ID",
+						"type": "UTF8"
+					},
+					{
+						"name": "Operator",
+						"type": "UTF8"
+					},
+					{
+						"name": "Formation",
+						"type": "UTF8"
+					},
+					{
+						"name": "Production Date",
+						"type": "UTF8"
+					},
+					{
+						"name": "Production Volume",
+						"type": "DOUBLE"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/well_production_data_LS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rebrickable_Lego_Database_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLSg2DEV_LS",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"DatasetName_SinkDS": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().DatasetName_SinkDS,'.csv.gz')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat(\n    'Rebrickable/',\n    'Lego/',\n     dataset().DatasetName_SinkDS, '/',\n    '/Year=', formatDateTime(utcNow(),'yyyy'),\n    '/Month=',formatDateTime(utcNow(),'MM'),\n    '/Day=',formatDateTime(utcNow(),'dd')\n)",
+							"type": "Expression"
+						},
+						"fileSystem": "raw-data"
+					},
+					"compression": {
+						"type": "gzip"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLSg2DEV_LS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rebrickable_UserAPI_Database_Sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLSg2DEV_LS",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"endpoint_sinkDS": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().endpoint_sinkDS,'.csv.gz')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@concat(\n    'Rebrickable/',\n    'Users/',\n     dataset().endpoint_sinkDS, '/',\n    '/Year=', formatDateTime(utcNow(),'yyyy'),\n    '/Month=',formatDateTime(utcNow(),'MM'),\n    '/Day=',formatDateTime(utcNow(),'dd')\n)",
+							"type": "Expression"
+						},
+						"fileSystem": "raw-data"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLSg2DEV_LS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Rebrickable_UserAPI_Database_Source_DS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Rebrickable_UserAPI_Database_LS",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"EndPoint": {
+						"type": "string"
+					},
+					"User_token": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": {
+						"value": "/api/v3/users/@{dataset().User_token}/@{dataset().EndPoint}/\n\n",
+						"type": "Expression"
+					}
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Rebrickable_UserAPI_Database_LS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Reprickable_Lego_Dataset_Names_List_json')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ADLSg2DEV_LS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "rebrickable_lego_datasets.json",
+						"folderPath": "Rebrickable/Lego",
+						"fileSystem": "raw-data"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"dataset_names": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ADLSg2DEV_LS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/well_production_table')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "well_task_DB_LS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "well_production_data"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/well_task_DB_LS')]"
+			]
+		}
+	]
+}

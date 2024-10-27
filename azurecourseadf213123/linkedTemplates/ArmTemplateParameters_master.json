@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "azurecourseadf213123"
+		},
+		"AdventureWorks_LS_password": {
+			"value": ""
+		},
+		"rawADLSg2_accountKey": {
+			"value": ""
+		},
+		"well_production_data_LS_accountKey": {
+			"value": ""
+		},
+		"well_task_DB_LS_password": {
+			"value": ""
+		},
+		"ADLSg2DEV_LS_properties_typeProperties_url": {
+			"value": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"AdventureWorks_LS_properties_typeProperties_server": {
+			"value": "@{linkedService().serverName_ls}"
+		},
+		"AdventureWorks_LS_properties_typeProperties_database": {
+			"value": "@{linkedService().dbName_ls}"
+		},
+		"AdventureWorks_LS_properties_typeProperties_userName": {
+			"value": "AtomicaOL"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://asdasd123123.vault.azure.net/"
+		},
+		"Rebricakble_Database_LS_properties_typeProperties_url": {
+			"value": "https://rebrickable.com/media/downloads/"
+		},
+		"Rebricakble_Database_LS_properties_typeProperties_userName": {
+			"value": "AtomicaOL"
+		},
+		"Rebrickable_UserAPI_Database_LS_properties_typeProperties_url": {
+			"value": "https://rebrickable.com/"
+		},
+		"rawADLSg2_properties_typeProperties_url": {
+			"value": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"well_production_data_LS_properties_typeProperties_url": {
+			"value": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"well_task_DB_LS_properties_typeProperties_server": {
+			"value": "azurecourse.database.windows.net"
+		},
+		"well_task_DB_LS_properties_typeProperties_database": {
+			"value": "training"
+		},
+		"well_task_DB_LS_properties_typeProperties_userName": {
+			"value": "AtomicaOL"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

@@ -1,0 +1,181 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "azurecourseadf213123"
+		},
+		"AdventureWorks_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AdventureWorks_LS'"
+		},
+		"rawADLSg2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'rawADLSg2'"
+		},
+		"well_production_data_LS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'well_production_data_LS'"
+		},
+		"well_task_DB_LS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'well_task_DB_LS'"
+		},
+		"ADLSg2DEV_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"AdventureWorks_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().serverName_ls}"
+		},
+		"AdventureWorks_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().dbName_ls}"
+		},
+		"AdventureWorks_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AtomicaOL"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://asdasd123123.vault.azure.net/"
+		},
+		"Rebricakble_Database_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rebrickable.com/media/downloads/"
+		},
+		"Rebricakble_Database_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AtomicaOL"
+		},
+		"Rebrickable_UserAPI_Database_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://rebrickable.com/"
+		},
+		"rawADLSg2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"well_production_data_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://atomicatraining.dfs.core.windows.net/"
+		},
+		"well_task_DB_LS_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azurecourse.database.windows.net"
+		},
+		"well_task_DB_LS_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "training"
+		},
+		"well_task_DB_LS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "AtomicaOL"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "azurecourseadf213123_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AdventureWorks_LS_password": {
+						"value": "[parameters('AdventureWorks_LS_password')]"
+					},
+					"rawADLSg2_accountKey": {
+						"value": "[parameters('rawADLSg2_accountKey')]"
+					},
+					"well_production_data_LS_accountKey": {
+						"value": "[parameters('well_production_data_LS_accountKey')]"
+					},
+					"well_task_DB_LS_password": {
+						"value": "[parameters('well_task_DB_LS_password')]"
+					},
+					"ADLSg2DEV_LS_properties_typeProperties_url": {
+						"value": "[parameters('ADLSg2DEV_LS_properties_typeProperties_url')]"
+					},
+					"AdventureWorks_LS_properties_typeProperties_server": {
+						"value": "[parameters('AdventureWorks_LS_properties_typeProperties_server')]"
+					},
+					"AdventureWorks_LS_properties_typeProperties_database": {
+						"value": "[parameters('AdventureWorks_LS_properties_typeProperties_database')]"
+					},
+					"AdventureWorks_LS_properties_typeProperties_userName": {
+						"value": "[parameters('AdventureWorks_LS_properties_typeProperties_userName')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"Rebrickable_UserAPI_Database_LS_properties_typeProperties_url": {
+						"value": "[parameters('Rebrickable_UserAPI_Database_LS_properties_typeProperties_url')]"
+					},
+					"rawADLSg2_properties_typeProperties_url": {
+						"value": "[parameters('rawADLSg2_properties_typeProperties_url')]"
+					},
+					"well_production_data_LS_properties_typeProperties_url": {
+						"value": "[parameters('well_production_data_LS_properties_typeProperties_url')]"
+					},
+					"well_task_DB_LS_properties_typeProperties_server": {
+						"value": "[parameters('well_task_DB_LS_properties_typeProperties_server')]"
+					},
+					"well_task_DB_LS_properties_typeProperties_database": {
+						"value": "[parameters('well_task_DB_LS_properties_typeProperties_database')]"
+					},
+					"well_task_DB_LS_properties_typeProperties_userName": {
+						"value": "[parameters('well_task_DB_LS_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "azurecourseadf213123_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Rebricakble_Database_LS_properties_typeProperties_url": {
+						"value": "[parameters('Rebricakble_Database_LS_properties_typeProperties_url')]"
+					},
+					"Rebricakble_Database_LS_properties_typeProperties_userName": {
+						"value": "[parameters('Rebricakble_Database_LS_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'azurecourseadf213123_ArmTemplate_0')]"
+			]
+		}
+	]
+}
