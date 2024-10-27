@@ -1,0 +1,36 @@
+{
+	"name": "Rebrickable User dataset",
+	"properties": {
+		"description": "Ingest Daily user dataset endpoint",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Rebrickable User Database Ingestion Task",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"EndPoint_pl": "allparts"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-10-27T20:07:00",
+				"timeZone": "Egypt Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						9
+					]
+				}
+			}
+		}
+	}
+}

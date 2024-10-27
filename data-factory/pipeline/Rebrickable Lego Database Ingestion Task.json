@@ -5,6 +5,8 @@
 			{
 				"name": "copy - Rebrickable Lego dataset",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -63,8 +65,6 @@
 				"name": "LKP - dataset name",
 				"description": "Select the dataset names",
 				"type": "Lookup",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -96,8 +96,6 @@
 			{
 				"name": "ForEach - Loop over dataset names",
 				"type": "ForEach",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "LKP - dataset name",
@@ -179,13 +177,38 @@
 				"type": "WebActivity",
 				"dependsOn": [
 					{
-						"activity": "copy - Rebrickable Lego dataset",
+						"activity": "ForEach - Loop over dataset names",
 						"dependencyConditions": [
 							"Failed"
 						]
-					},
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-03.israelcentral.logic.azure.com:443/workflows/7a4608addcaa47aea287b5f741e71a65/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=7Xgqf8y6rBk2AdFurQf_E4etVy1OxWiMAbPOPpkvBSI",
+					"body": {
+						"value": "{\n    \"message\" : \"This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.\",\n    \"dataFactoryName\" : \"@{pipeline().DataFactory}\", \n    \"pipelineName\" : \"@{pipeline().Pipeline}\", \n    \"receiver\" : \"kareema9022@gmail.com\"\n   }",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Error Alert2",
+				"description": "If error Then send an email to admin",
+				"type": "WebActivity",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [
 					{
-						"activity": "ForEach - Loop over dataset names",
+						"activity": "copy - Rebrickable Lego dataset",
 						"dependencyConditions": [
 							"Failed"
 						]
