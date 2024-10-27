@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Ingest Daily user dataset endpoint",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
