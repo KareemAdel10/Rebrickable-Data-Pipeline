@@ -21,7 +21,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
     - Azure Storage Explorer is used to interact with Azure Blob Storage and ADLS Gen2.
 
 # Steps
---
+---
 1. **Environment planning**:
     - Create two resource groups in Azure, one is for the **development** environment and the other is for the **production** environment, create an instance of **ADF** and **ADLSg2** for each environment.
 2. **Security**:
@@ -29,4 +29,22 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
         1. **adlsg2deployment** and **RBAC** for the deployment and the development environment. both are used to give **storage blob data contributor** role on the ADLSg2 accounts to each corresponding ADF instance.
 
         2. **DEV+PROD** a group that gives access for both adf instances to a single key vault that has the secrets on which the pipeline depend.
-        
+
+
+
+## Contribution
+Contributions to this project are welcome. If you have any ideas for improvement, feel free to fork the repository, make your changes, and submit a pull request. Please ensure your changes align with the overall project structure and objectives.
+
+## Acknowledgements
+I would like to thank the following:
+- Azure for offering powerful tools and services that enabled the seamless data engineering and analytics processes.
+- Tybul on Azure for providing great learning resources.
+
+# Contact
+For any questions, feedback, or further information, feel free to reach out:
+- **Email:** kareema9001@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/kareem-adel-b76ab9201/
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
