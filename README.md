@@ -52,7 +52,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
         - ADLSg2 serves as the staging layer for data storage, organized through a structured file system hierarchy.
             ![file system hierarchy](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/File%20hierarchy.png)
           
-    - ** Data Redundancy**:
+    - **Data Redundancy**:
         - LRS is used in the development environment
         - ZRS is used in the deployment environment
     - **Life Cycle Management**:
