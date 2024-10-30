@@ -7,9 +7,9 @@ This project leverages Azure Data Factory (ADF) to build and manage separate pip
 The primary objective is to establish a robust pipeline architecture to ingest, transform, and store data from **Rebrickable’s APIs** while maintaining strict security standards and operational efficiency.
 # Architecture
 
-- User_Dataset_pipeline:
+- LEGO_Database_pipeline:
     ![User_Dataset_pipeline](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Database%20pipeline.png)
-- LEGO_Database_pipeline
+- User_Dataset_pipeline:
     ![LEGO_Database_pipeline](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/User_Dataset_pipeline.png)
 
 
@@ -58,7 +58,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
     - **Life Cycle Management**:
             - created a life cycle policy that states if no changes were made to files for the last 30 days change their access tier from hot to cold.
       
-                ![Life Cycle Management](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Life%20Cycle%20Management.png)
+        ![Life Cycle Management](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Life%20Cycle%20Management.png)
 
 
 # Technologies & Tools
