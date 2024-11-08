@@ -58,9 +58,9 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
         ![Life Cycle Management](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Life%20Cycle%20Management.png)
 6. **Star Schema Creation**:
    - The Rebrickable database's ERD diagram illustrates a highly normalized relational database, which is primarily optimized for transactional applications. Consequently, creating a data warehouse was a crucial step in this project. This development allows for complex and multidimensional queries without encountering issues or delays.
-   - Relational database ERD Diagram:
+   - **Relational database ERD Diagram**:
      ![image](https://github.com/user-attachments/assets/3992325e-84d8-4d7e-b1cc-2ce700cae1ff)
-   - Datawarehouse starschema:
+   - **Datawarehouse starschema**:
      ![image](https://github.com/user-attachments/assets/d881440b-aca3-4fe2-a80a-d6e10de1d67d)
 
 7. **Databricks Workflow**:
