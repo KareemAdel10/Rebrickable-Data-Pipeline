@@ -1,16 +1,13 @@
+
 # Rebrickable Data Ingestion Pipeline
 
-The **Rebrickable Data Pipeline project** is a comprehensive data ingestion system designed to ingest and process data from two distinct sources securely: **the Rebrickable LEGO Database** and **the Rebrickable User Database**.
+The **Rebrickable Data Pipeline project** is a comprehensive daily data batches ingestion system designed to ingest, process, and store data into a datawarehouse from two distinct sources securely: **the Rebrickable LEGO Database** and **the Rebrickable User Database**.
 This project leverages Azure Data Factory (ADF) to build and manage separate pipelines for each database, ensuring secure access control, daily automation, environment synchronization, and failure alerting.
 # Project Goals
 
 The primary objective is to establish a robust pipeline architecture to ingest, transform, and store data from **Rebrickable’s APIs** while maintaining strict security standards and operational efficiency.
 # Architecture
-
-- LEGO_Database_pipeline:
-    ![User_Dataset_pipeline](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Database%20pipeline.png)
-- User_Dataset_pipeline:
-    ![LEGO_Database_pipeline](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/User_Dataset_pipeline.png)
+![image](https://github.com/user-attachments/assets/82dcfffb-772b-41ef-b789-5354112345e5)
 
 
 # Key Features:
@@ -59,7 +56,24 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
             - created a life cycle policy that states if no changes were made to files for the last 30 days change their access tier from hot to cold.
       
         ![Life Cycle Management](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Life%20Cycle%20Management.png)
+6. **Star Schema Creation**:
+   - The Rebrickable database's ERD diagram illustrates a highly normalized relational database, which is primarily optimized for transactional applications. Consequently, creating a data warehouse was a crucial step in this project. This development allows for complex and multidimensional queries without encountering issues or delays.
+   - Relational database ERD Diagram:
+     ![image](https://github.com/user-attachments/assets/3992325e-84d8-4d7e-b1cc-2ce700cae1ff)
+   - Datawarehouse starschema:
+     ![image](https://github.com/user-attachments/assets/d881440b-aca3-4fe2-a80a-d6e10de1d67d)
 
+7. **Databricks Workflow**:
+   - Created a databricks workflow that makes the newly ingested daily batches of data go through a pipeline from being zipped CSV files until it's dumped into the Delta Lake datawarehouse
+     ![Databricks Workflow](https://github.com/user-attachments/assets/89116020-4ea9-4921-84c4-873a43abb9d3)
+   - It consists of 3 main scripts:
+     1. The first one unzips the data.
+     2. The second one performs an ETL pipeline on the unzipped batches.
+     3. The third one is responsible for dumping the batches into the datawarehouse.
+8. **Serverless Sql Pool**:
+   - To provide the data science team with a higher level of abstraction, a Serverless SQL pool was created in Azure Synapse Analytics, and an external table was established for each individual dimension.
+     ![image](https://github.com/user-attachments/assets/d737e46b-5ee6-42ca-bd0d-4b5ffac1ca3d)
+   - You can create dedicated Spark pools and directly query the data in Synapse's Spark notebooks if needed.
 
 # Technologies & Tools
 
@@ -69,16 +83,12 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
 - Azure Data Lake Storage Gen2 (ADLSg2) for data staging
 - Logic Apps for automated failure notifications
 - Azure DevOps for CI/CD pipeline management
+- Azure Databricks
+- Azure Synapse Analytics
 
 ## Contribution
 
 Contributions to this project are welcome. If you have any ideas for improvement, feel free to fork the repository, make your changes, and submit a pull request. Please ensure your changes align with the overall project structure and objectives.
-
-## Acknowledgements
-
-I would like to thank the following:
-- Azure for offering powerful tools and services that enable seamless data engineering and analytics processes.
-- Tybul on Azure for providing great learning resources.
 
 # Contact
 
