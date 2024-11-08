@@ -6,7 +6,7 @@
 				"name": "copy - Rebrickable Lego dataset",
 				"type": "Copy",
 				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
+				"onInactiveMarkAs": "Failed",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -175,6 +175,8 @@
 				"name": "Error Alert",
 				"description": "If error Then send an email to admin",
 				"type": "WebActivity",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "ForEach - Loop over dataset names",
