@@ -1,5 +1,4 @@
-
-# Rebrickable Data Ingestion Pipeline
+# Rebrickable Daily Data Ingestion Pipeline
 
 The **Rebrickable Data Pipeline project** is a comprehensive daily data batches ingestion system designed to ingest, process, and store data into a datawarehouse from two distinct sources securely: **the Rebrickable LEGO Database** and **the Rebrickable User Database**.
 This project leverages Azure Data Factory (ADF) to build and manage separate pipelines for each database, ensuring secure access control, daily automation, environment synchronization, and failure alerting.
