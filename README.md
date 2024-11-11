@@ -30,7 +30,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
 
 3. **Secure Access Control**:
     - The project employs separate Microsoft Entra ID **groups** and service principals to enforce strict access control, ensuring that only designated managed identities can interact with specific resources.
-        - **adlsg2deployment** and **RBAC** for the deployment and the development environment. both are used to give **storage blob data contributor** role on the ADLSg2 accounts to each corresponding ADF instance.
+        - **adlsg2deployment** and **RBAC** for the deployment and the development environment. Both are used to give a **storage blob data contributor** role on the ADLSg2 accounts to each corresponding ADF instance.
             ![adlsg2deployment](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/adlsg2deployment.png)
             ![RBAC](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/RBAC.png)
         - **DEV+PROD** a group that gives access for both adf instances to a single key vault that has the secrets on which the pipeline depend.
@@ -45,10 +45,14 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
         ![Azure Logic App](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/Logic%20App.png)
 
 5. **Data Storage & Hierarchy**:
-    - **Azure Data Lake Storage Gen2 (ADLSg2)**: 
-        - ADLSg2 serves as the staging layer for data storage, organized through a structured file system hierarchy.
+    - **Lakehouse Architecture**:
+        - Followed Microsoft's lakehouse architecture.
+            ![Microsoft's Lakehouse architecture](https://github.com/user-attachments/assets/3ed1f78b-0de5-4193-ab1a-82852755fd9d)
+
+        - Created a structured file system hierarchy.
+
+
             ![file system hierarchy](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/File%20hierarchy.png)
-          
     - **Data Redundancy**:
         - LRS is used in the development environment
         - ZRS is used in the deployment environment
@@ -85,6 +89,9 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
 - Azure DevOps for CI/CD pipeline management
 - Azure Databricks
 - Azure Synapse Analytics
+
+# Demo 
+ [Watch the Demo video](https://drive.google.com/file/d/1PlfhykV1NnD9h8OmOzipjKlj88jxd763/view?usp=sharing)
 
 ## Contribution
 
