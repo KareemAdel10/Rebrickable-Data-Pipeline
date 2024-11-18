@@ -52,6 +52,12 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
 
 
             ![file system hierarchy](https://github.com/KareemAdel10/Rebrickable-Data-Pipeline/blob/main/Images/File%20hierarchy.png)
+    - **File Format**:
+      - Used Delta Lake as my files format
+
+
+          ![image](https://github.com/user-attachments/assets/edab5cf4-3ef2-4395-9dff-426a5e1c88c9)
+
     - **Data Redundancy**:
         - LRS is used in the development environment
         - ZRS is used in the deployment environment
@@ -66,15 +72,18 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
    - **Datawarehouse starschema**:
      ![image](https://github.com/user-attachments/assets/d881440b-aca3-4fe2-a80a-d6e10de1d67d)
 
-7. **Databricks Workflow**:
+7. **Workflow Orchestration**:
    - Created a databricks workflow that makes the newly ingested daily batches of data go through a pipeline from being zipped CSV files until it's dumped into the Delta Lake datawarehouse
      ![Databricks Workflow](https://github.com/user-attachments/assets/89116020-4ea9-4921-84c4-873a43abb9d3)
-   - It consists of 3 main scripts:
-     1. The first one unzips the data.
-     2. The second one performs an ETL pipeline on the unzipped batches.
-     3. The third one is responsible for dumping the batches into the datawarehouse.
+       - It consists of 3 main scripts:
+         1. The first one unzips the data.
+         2. The second one performs an ETL pipeline on the unzipped batches.
+         3. The third one is responsible for dumping the batches into the datawarehouse.
+   - Created an alternative ADF pipeline for stakeholders to execute Spark scripts immediately after the ingestion step, without relying on Databricks' workflow triggers.
+     ![image](https://github.com/user-attachments/assets/85a4d243-18e9-437e-af26-aacac5041bb2)
+
 8. **Serverless Sql Pool**:
-   - To provide the data science team with a higher level of abstraction, a Serverless SQL pool was created in Azure Synapse Analytics, and an external table was established for each individual dimension.
+   - To provide the data sciencCreated an ADF pipeline as an alternative to run the Spark scripts immediately after the ingestion step, without relying on Databricks' workflow triggers.e team with a higher level of abstraction, a Serverless SQL pool was created in Azure Synapse Analytics, and an external table was established for each individual dimension.
      ![image](https://github.com/user-attachments/assets/d737e46b-5ee6-42ca-bd0d-4b5ffac1ca3d)
    - You can create dedicated Spark pools and directly query the data in Synapse's Spark notebooks if needed.
 
