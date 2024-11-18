@@ -78,7 +78,7 @@ The primary objective is to establish a robust pipeline architecture to ingest, 
        - It consists of 3 main scripts:
          1. The first one unzips the data.
          2. The second one performs an ETL pipeline on the unzipped batches.
-         3. The third one is responsible for dumping the batches into the datawarehouse.
+         3. The third one is responsible for dumping the batches into the datawarehouse and making sure to handle SCD type 2 along the way.
    - Created an alternative ADF pipeline for stakeholders to execute Spark scripts immediately after the ingestion step, without relying on Databricks' workflow triggers.
      ![image](https://github.com/user-attachments/assets/85a4d243-18e9-437e-af26-aacac5041bb2)
 
